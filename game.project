@@ -1,0 +1,31 @@
+[bootstrap]
+main_collection = /main/main.collectionc
+
+[script]
+shared_state = 1
+
+[display]
+width = 960
+height = 640
+
+[android]
+input_method = HiddenInputField
+package = foo.testname.com
+
+[project]
+title = ExampleConfigfile
+
+[test]
+name = Banana
+
+[html5]
+engine_arguments = --config=test.name=Orange
+
+[library]
+include_dirs = defold-config
+
+[secret]
+message = Uryyb sebz gur rkgrafvba!
+integer = 123
+float = 1.0
+

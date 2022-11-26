@@ -1,0 +1,6 @@
+name: ConfigFileExt
+
+platforms:
+    common:
+        context:
+            symbols: ['ConfigFileExt', 'ConfigfileExtension']

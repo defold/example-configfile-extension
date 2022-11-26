@@ -1,0 +1,26 @@
+local function get_prop_string(key, default_value)
+	local v = sys.get_config_string(key, default_value)
+	print(key, ":", "'"..v.."'", "(str)")
+end
+local function get_prop_int(key, default_value)
+	local v = sys.get_config_int(key, default_value)
+	print(key, ":", v, "(int)")
+end
+local function get_prop_number(key, default_value)
+	local v = sys.get_config_number(key, default_value)
+	print(key, ":", v, "(number)")
+end
+
+function init(self)
+	-- get some property we know exists in the game.project
+	get_prop_string('secret.message', 'unknown')
+	get_prop_int('secret.integer', 0)
+	get_prop_number('secret.float', 0.0)
+
+	-- these aren't stored in the game.project file
+	-- the config file extension will still be called
+	get_prop_string('secret.virtual_example_str', 'Guvf vf n yhn zrffntr!')
+	get_prop_int('secret.virtual_example_int', 10)
+	get_prop_number('secret.virtual_example_number', 20.0)
+	sys.exit(0)
+end
