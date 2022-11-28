@@ -91,6 +91,7 @@ static bool Matches(const char* key)
 
 static void ConfigFile_Create(dmConfigFile::HConfig config)
 {
+    DEBUG("Initialising the config file extension for config %p\n", config);
     AllocateConfigStrings(config);
 }
 
@@ -104,7 +105,10 @@ static void ConfigFile_Destroy(dmConfigFile::HConfig config)
 static bool ConfigFile_GetString(dmConfigFile::HConfig config, const char* key, const char* default_value, const char** out)
 {
     if (!Matches(key))
+    {
+        DEBUG("Ignoring overriding string: %s = %s\n", key, default_value);
         return false;
+    }
     // the keys now start with "secret"
 
     char* s = strdup(default_value);
@@ -121,7 +125,10 @@ static bool ConfigFile_GetString(dmConfigFile::HConfig config, const char* key, 
 static bool ConfigFile_GetInt(dmConfigFile::HConfig config, const char* key, int32_t default_value, int32_t* out)
 {
     if (!Matches(key))
+    {
+        DEBUG("Ignoring overriding int: %s = %d\n", key, default_value);
         return false;
+    }
     // the keys now start with "secret"
 
     *out = default_value * 2; // Do some custom transformation
@@ -131,7 +138,10 @@ static bool ConfigFile_GetInt(dmConfigFile::HConfig config, const char* key, int
 static bool ConfigFile_GetFloat(dmConfigFile::HConfig config, const char* key, float default_value, float* out)
 {
     if (!Matches(key))
+    {
+        DEBUG("Ignoring overriding float: %s = %f\n", key, default_value);
         return false;
+    }
     // the keys now start with "secret"
 
     *out = default_value * 4; // Do some custom transformation
